@@ -1,0 +1,42 @@
+services:
+
+  zookeeper:
+    platform: linux/amd64
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    restart: always
+    ports:
+      - "2181:2181"   # Client Zookeeper
+    volumes:
+      - zookeeper_data:/opt/zookeeper-3.4.13/data
+
+  kafka:
+    platform: linux/amd64
+    image: wurstmeister/kafka
+    container_name: kafka
+    restart: always
+    ports:
+      - "9092:9092"   # Interne (inter-conteneurs)
+      - "9093:9093"   # Externe (accès depuis l'hôte / réseau)
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: INTERNAL://:9092,EXTERNAL://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://${SERVER_IP:-127.0.0.1}:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CREATE_TOPICS: "topic1:20:1,topic2:1:1"
+      KAFKA_LOG_RETENTION_BYTES: 1073741824
+      KAFKA_LOG_DIRS: /kafka/logs
+    volumes:
+      - kafka_data:/kafka/logs
+    depends_on:
+      - zookeeper
+
+volumes:
+  zookeeper_data:
+  kafka_data:
+
+networks:
+  default:
+    name: kafka-network

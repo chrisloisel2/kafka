@@ -1,0 +1,6 @@
+FROM wurstmeister/zookeeper:latest
+
+# Zookeeper — coordinateur de cluster pour Kafka.
+# Se référer au docker-compose.yml pour la configuration complète.
+#
+# Port : 2181 — client Zookeeper
