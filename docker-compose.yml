@@ -16,15 +16,15 @@ services:
     container_name: kafka
     restart: always
     ports:
-      - "9092:9092"   # Interne (inter-conteneurs)
-      - "9093:9093"   # Externe (accès depuis l'hôte / réseau)
+      - "9092:9092"   # Externe (accès depuis l'hôte / réseau LAN)
+      - "9093:9093"   # Interne (inter-conteneurs)
     environment:
       SERVER_IP: 192.168.88.4
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://192.168.88.4:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL:PLAINTEXT,INTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: EXTERNAL://0.0.0.0:9092,INTERNAL://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: EXTERNAL://192.168.88.4:9092,INTERNAL://kafka:9093
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_CREATE_TOPICS: "topic1:20:1,topic2:1:1"
       KAFKA_LOG_RETENTION_BYTES: 1073741824
