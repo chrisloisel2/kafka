@@ -5,7 +5,7 @@ from kafka import KafkaProducer
 
 KAFKA_BROKER      = os.environ.get("KAFKA_BROKER", "192.168.88.4")
 KAFKA_BROKER_PORT = int(os.environ.get("KAFKA_BROKER_PORT", "9092"))
-KAFKA_TOPIC       = os.environ.get("KAFKA_TOPIC", "topic2")
+KAFKA_TOPIC       = os.environ.get("KAFKA_TOPIC", "monitoring")
 
 producer = KafkaProducer(
     bootstrap_servers=f"{KAFKA_BROKER}:{KAFKA_BROKER_PORT}",
