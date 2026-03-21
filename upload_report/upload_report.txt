@@ -1,0 +1,31 @@
+RAPPORT D'UPLOAD S3 + MESURE RÉSEAU
+================================================================================
+Bucket               : physical-data-storage
+Région               : eu-west-3
+Préfixe S3           : physical_data_db
+Dossier local        : /srv/exoria/inbox/select
+Début UTC            : 2026-03-15T13:20:01.984034+00:00
+Fin UTC              : 2026-03-15T13:45:24.323832+00:00
+Durée totale         : 1522.340 s
+Fichiers détectés    : 1534
+Fichiers uploadés    : 1534
+Erreurs              : 0
+Taille locale totale : 5111204812 octets (4.76 GB)
+Octets uploadés      : 5111204812 octets (4.76 GB)
+
+STATISTIQUES DÉBIT UPLOAD
+--------------------------------------------------------------------------------
+Débit moyen upload   : 0.026860 Gbps
+Débit pic upload     : 0.201064 Gbps
+P50 upload           : 0.000938 Gbps
+P90 upload           : 0.100525 Gbps
+P95 upload           : 0.100531 Gbps
+P99 upload           : 0.100535 Gbps
+
+STATISTIQUES RÉSEAU SYSTÈME
+--------------------------------------------------------------------------------
+Débit pic total net  : 0.196634 Gbps
+P50 total net        : 0.109903 Gbps
+P90 total net        : 0.194665 Gbps
+P95 total net        : 0.195389 Gbps
+P99 total net        : 0.195906 Gbps
